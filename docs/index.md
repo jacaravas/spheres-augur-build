@@ -37,11 +37,15 @@ The starting point for this section is a JSON file. You can alternately use our 
   8. [Options for visualizing and sharing results](sharing.md)
   9. [Interpreting your results](interpretation.md)
   10. [Writing a narrative to highlight key findings](narratives.md)
-  11. _Case studies: interpreting your data (coming soon!)_
 
 ### Multiple inputs
 
-  12. [Running the pipeline starting with multiple inputs](multiple_inputs.md)
+  11. [Running the pipeline starting with multiple inputs](multiple_inputs.md)
+
+## Reference guides
+
+  - [Metadata field definitions](metadata-fields.md)
+  - [Workflow configuration parameters](configuration.md)
 
 ## Help
 

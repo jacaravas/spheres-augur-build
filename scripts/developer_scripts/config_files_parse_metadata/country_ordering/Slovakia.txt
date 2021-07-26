@@ -157,7 +157,7 @@ District of Michalovce
 	Voľa
 	Vrbnica
 	Vysoká nad Uhom
-	Závadka, district Michalovce
+	Závadka (Michalovce)
 	Zbudza
 	Zemplínska Široká
 	Žbince
@@ -299,7 +299,7 @@ District of Gelnica
 	Gelnica
 	Helcmanovce
 	Henclová
-	Závadka, district Gelnica
+	Závadka (Gelnica)
 	Žakarovce
 	Hrišovce
 	Jaklovce
@@ -361,7 +361,7 @@ District of Kosice – okolie
 	Bohdanovce
 	Boliarov
 	Budimír
-	Bukovec, district Kosice - okolie
+	Bukovec (Kosice)
 	Bunetice
 	Buzica
 	Cestice
@@ -968,7 +968,7 @@ District of Partizanske
 	Veľký Klíž
 	Žabokreky nad Nitrou
 	Bošany
-	Hradište, district Partizanske
+	Hradiste (Trenčín)
 	Chynorany
 	Klátova Nová Ves
 	Kolačno
@@ -1488,7 +1488,7 @@ District of Zlaté Moravce
 
 # Zilina
 District of Tvrdosin
-	Brezovica, district Tvrdosin
+	Brezovica (Zilina)
 	Habovka
 	Hladovka
 	Liesek
@@ -1554,7 +1554,7 @@ District of Zilina
 	Ovčiarsko
 	Paština Závada
 	Lietavská Lúčka
-	Porúbka, district Zilina
+	Porúbka (Zilina)
 	Ďurčiná
 	Kľače
 	Nezbudská Lúčka
@@ -1783,6 +1783,7 @@ District of Ruzomberok
 	Ludrová
 	Martincek
 	Potok, district Ruzomberok
+	Rojkov
 	Ruzomberok
 	Liptovské Sliače
 	Stankovany
@@ -2177,7 +2178,7 @@ District of Poltar
 	Breznička, district Poltar
 	Cinobaňa
 	České Brezovo
-	Hradište, district Poltar
+	Hradiste (Banska Bystrica)
 	Kalinovo
 	Kokava nad Rimavicou
 	Krná
@@ -2278,7 +2279,7 @@ District of Rimavska Sobota
 	Chrámec
 	Ivanice
 	Janice
-	Jesenské, district Rimavska Sobota
+	Jesenské (Rimavska Sobota)
 	Jestice
 	Kaloša
 	Kesovce
@@ -2507,6 +2508,8 @@ District of Svidnik
 	Vyšný Mirošov
 	Vyšný Orlík
 	Dukovce
+	Dubová
+
 District of Vranov nad Toplov
 	Holčíkovce
 	Jasenovce
@@ -2577,6 +2580,7 @@ District of Vranov nad Toplov
 	Hlinné
 	Hencovce
 District of Bardejov
+	Bardejovská Nová Ves
 	Vaniškovce
 	Bardejov
 	Abrahámovce, district Bardejov
@@ -2681,7 +2685,7 @@ District of Humenne
 	Jankovce
 	Kamenica nad Cirochou
 	Karná
-	Kochanovce, district Humenne
+	Kochanovce (Humenne)
 	Koškovce
 	Lieskovec, district Humenne
 	Ľubiša
@@ -2829,7 +2833,7 @@ District of Poprad
 	Poprad
 	Batizovce
 	Gánovce
-	Gerlachov, district Poprad
+	Gerlachov (Poprad)
 	Hôrka
 	Hozelec
 	Hranovnica
@@ -2914,7 +2918,7 @@ District of Prešov
 	Ondrašovce
 	Ovčie
 	Petrovany
-	Podhorany, district Prešov
+	Podhorany (Prešov)
 	Podhradík
 	Proč
 	Pušovce
@@ -2952,7 +2956,7 @@ District of Prešov
 District of Sabinov
 	Bajerovce
 	Bodovce
-	Brezovica, district Sabinov
+	Brezovica (Prešov)
 	Brezovička
 	Červená Voda
 	Červenica pri Sabinove

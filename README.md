@@ -45,6 +45,7 @@ git fetch upstream
 
 Merge these changes into the local repository, adding an explicit merge commit.
 
+
 ```bash
 git merge --no-ff upstream/master
 ```
@@ -59,6 +60,7 @@ the work worldwide are waived through the [CC0 1.0 Universal public domain dedic
 All contributions to this repository will be released under the CC0 dedication. By
 submitting a pull request you are agreeing to comply with this waiver of
 copyright interest.
+
 
 ## License Standard Notice
 The repository utilizes code licensed under the terms of the Apache Software
