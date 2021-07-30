@@ -1,0 +1,455 @@
+# # Define path to the conda environment file.
+# conda_environment: "spheres_profile/conda.yaml"
+
+# Define custom auspice configuration to enable frequencies.
+files:
+  auspice_config: "spheres_profile/auspice_config.json"
+
+inputs:
+  - name: "gisaid_local"
+    metadata: "data/gisaid_metadata.tsv"
+    sequences: "data/gisaid_sequences.fasta"
+  - name: "references"
+    metadata: "data/references_metadata.tsv"
+    filtered: "data/references_sequences.fasta"
+  
+# Define builds for each state and territory.
+builds:
+  USA:
+    subsampling_scheme: USA
+    region: North America
+    country: USA
+    colors: spheres_profile/state_colors/usa_colors.tsv
+    description: spheres_profile/state_descriptions/usa_description.md    
+  NSSS:
+    subsampling_scheme: NSSS
+    region: North America
+    country: USA
+    colors: spheres_profile/state_colors/usa_colors.tsv
+    description: spheres_profile/state_descriptions/NS3_description.md
+  alabama:
+    colors: spheres_profile/state_colors/alabama_colors.tsv
+    description: spheres_profile/state_descriptions/alabama_description.md
+    region: North America
+    country: USA
+    division: Alabama
+    subsampling_scheme: state-territory    
+  alaska:
+    colors: spheres_profile/state_colors/alaska_colors.tsv
+    description: spheres_profile/state_descriptions/alaska_description.md
+    region: North America
+    country: USA
+    division: Alaska
+    subsampling_scheme: state-territory
+  arizona:
+    colors: spheres_profile/state_colors/arizona_colors.tsv
+    description: spheres_profile/state_descriptions/arizona_description.md
+    region: North America
+    country: USA
+    division: Arizona
+    subsampling_scheme: state-territory
+  arkansas:
+    colors: spheres_profile/state_colors/arkansas_colors.tsv
+    description: spheres_profile/state_descriptions/arkansas_description.md
+    region: North America
+    country: USA
+    division: Arkansas
+    subsampling_scheme: state-territory
+  california:
+    colors: spheres_profile/state_colors/california_colors.tsv
+    description: spheres_profile/state_descriptions/california_description.md
+    region: North America
+    country: USA
+    division: California
+    subsampling_scheme: state-territory
+  colorado:
+    colors: spheres_profile/state_colors/colorado_colors.tsv
+    description: spheres_profile/state_descriptions/colorado_description.md
+    region: North America
+    country: USA
+    division: Colorado
+    subsampling_scheme: state-territory
+  connecticut:
+    colors: spheres_profile/state_colors/connecticut_colors.tsv
+    description: spheres_profile/state_descriptions/connecticut_description.md
+    region: North America
+    country: USA
+    division: Connecticut
+    subsampling_scheme: state-territory
+  delaware:
+    colors: spheres_profile/state_colors/delaware_colors.tsv
+    description: spheres_profile/state_descriptions/delaware_description.md
+    region: North America
+    country: USA
+    division: Delaware
+    subsampling_scheme: state-territory
+  florida:
+    colors: spheres_profile/state_colors/florida_colors.tsv
+    description: spheres_profile/state_descriptions/florida_description.md
+    region: North America
+    country: USA
+    division: Florida
+    subsampling_scheme: state-territory
+  georgia:
+    colors: spheres_profile/state_colors/georgia_colors.tsv
+    description: spheres_profile/state_descriptions/georgia_description.md
+    region: North America
+    country: USA
+    division: Georgia
+    subsampling_scheme: state-territory
+  hawaii:
+    colors: spheres_profile/state_colors/hawaii_colors.tsv
+    description: spheres_profile/state_descriptions/hawaii_description.md
+    region: North America
+    country: USA
+    division: Hawaii
+    subsampling_scheme: state-territory
+  idaho:
+    colors: spheres_profile/state_colors/idaho_colors.tsv
+    description: spheres_profile/state_descriptions/idaho_description.md
+    region: North America
+    country: USA
+    division: Idaho
+    subsampling_scheme: state-territory
+  illinois:
+    colors: spheres_profile/state_colors/illinois_colors.tsv
+    description: spheres_profile/state_descriptions/illinois_description.md
+    region: North America
+    country: USA
+    division: Illinois
+    subsampling_scheme: state-territory
+  indiana:
+    colors: spheres_profile/state_colors/indiana_colors.tsv
+    description: spheres_profile/state_descriptions/indiana_description.md
+    region: North America
+    country: USA
+    division: Indiana
+    subsampling_scheme: state-territory
+  iowa:
+    colors: spheres_profile/state_colors/iowa_colors.tsv
+    description: spheres_profile/state_descriptions/iowa_description.md
+    region: North America
+    country: USA
+    division: Iowa
+    subsampling_scheme: state-territory
+  kansas:
+    colors: spheres_profile/state_colors/kansas_colors.tsv
+    description: spheres_profile/state_descriptions/kansas_description.md
+    region: North America
+    country: USA
+    division: Kansas
+    subsampling_scheme: state-territory
+  kentucky:
+    colors: spheres_profile/state_colors/kentucky_colors.tsv
+    description: spheres_profile/state_descriptions/kentucky_description.md
+    region: North America
+    country: USA
+    division: Kentucky
+    subsampling_scheme: state-territory
+  louisiana:
+    colors: spheres_profile/state_colors/louisiana_colors.tsv
+    description: spheres_profile/state_descriptions/louisiana_description.md
+    region: North America
+    country: USA
+    division: Louisiana
+    subsampling_scheme: state-territory
+  maine:
+    colors: spheres_profile/state_colors/maine_colors.tsv
+    description: spheres_profile/state_descriptions/maine_description.md
+    region: North America
+    country: USA
+    division: Maine
+    subsampling_scheme: state-territory
+  maryland:
+    colors: spheres_profile/state_colors/maryland_colors.tsv
+    description: spheres_profile/state_descriptions/maryland_description.md
+    region: North America
+    country: USA
+    division: Maryland
+    subsampling_scheme: state-territory
+  massachusetts:
+    colors: spheres_profile/state_colors/massachusetts_colors.tsv
+    description: spheres_profile/state_descriptions/massachusetts_description.md
+    region: North America
+    country: USA
+    division: Massachusetts
+    subsampling_scheme: state-territory
+  michigan:
+    colors: spheres_profile/state_colors/michigan_colors.tsv
+    description: spheres_profile/state_descriptions/michigan_description.md
+    region: North America
+    country: USA
+    division: Michigan
+    subsampling_scheme: state-territory
+  minnesota:
+    colors: spheres_profile/state_colors/minnesota_colors.tsv
+    description: spheres_profile/state_descriptions/minnesota_description.md
+    region: North America
+    country: USA
+    division: Minnesota
+    subsampling_scheme: state-territory
+  mississippi:
+    colors: spheres_profile/state_colors/mississippi_colors.tsv
+    description: spheres_profile/state_descriptions/mississippi_description.md
+    region: North America
+    country: USA
+    division: Mississippi
+    subsampling_scheme: state-territory
+  missouri:
+    colors: spheres_profile/state_colors/missouri_colors.tsv
+    description: spheres_profile/state_descriptions/missouri_description.md
+    region: North America
+    country: USA
+    division: Missouri
+    subsampling_scheme: state-territory
+  montana:
+    colors: spheres_profile/state_colors/montana_colors.tsv
+    description: spheres_profile/state_descriptions/montana_description.md
+    region: North America
+    country: USA
+    division: Montana
+    subsampling_scheme: state-territory
+  nebraska:
+    colors: spheres_profile/state_colors/nebraska_colors.tsv
+    description: spheres_profile/state_descriptions/nebraska_description.md
+    region: North America
+    country: USA
+    division: Nebraska
+    subsampling_scheme: state-territory
+  nevada:
+    colors: spheres_profile/state_colors/nevada_colors.tsv
+    description: spheres_profile/state_descriptions/nevada_description.md
+    region: North America
+    country: USA
+    division: Nevada
+    subsampling_scheme: state-territory
+  new-hampshire:
+    colors: spheres_profile/state_colors/new-hampshire_colors.tsv
+    description: spheres_profile/state_descriptions/new-hampshire_description.md
+    region: North America
+    country: USA
+    division: New Hampshire
+    subsampling_scheme: state-territory
+  new-jersey:
+    colors: spheres_profile/state_colors/new-jersey_colors.tsv
+    description: spheres_profile/state_descriptions/new-jersey_description.md
+    region: North America
+    country: USA
+    division: New Jersey
+    subsampling_scheme: state-territory
+  new-mexico:
+    colors: spheres_profile/state_colors/new-mexico_colors.tsv
+    description: spheres_profile/state_descriptions/new-mexico_description.md
+    region: North America
+    country: USA
+    division: New Mexico
+    subsampling_scheme: state-territory
+  new-york:
+    colors: spheres_profile/state_colors/new-york_colors.tsv
+    description: spheres_profile/state_descriptions/new-york_description.md
+    region: North America
+    country: USA
+    division: New York
+    subsampling_scheme: state-territory
+  north-carolina:
+    colors: spheres_profile/state_colors/north-carolina_colors.tsv
+    description: spheres_profile/state_descriptions/north-carolina_description.md
+    region: North America
+    country: USA
+    division: North Carolina
+    subsampling_scheme: state-territory
+  north-dakota:
+    colors: spheres_profile/state_colors/north-dakota_colors.tsv
+    description: spheres_profile/state_descriptions/north-dakota_description.md
+    region: North America
+    country: USA
+    division: North Dakota
+    subsampling_scheme: state-territory
+  ohio:
+    colors: spheres_profile/state_colors/ohio_colors.tsv
+    description: spheres_profile/state_descriptions/ohio_description.md
+    region: North America
+    country: USA
+    division: Ohio
+    subsampling_scheme: state-territory
+  oklahoma:
+    colors: spheres_profile/state_colors/oklahoma_colors.tsv
+    description: spheres_profile/state_descriptions/oklahoma_description.md
+    region: North America
+    country: USA
+    division: Oklahoma
+    subsampling_scheme: state-territory
+  oregon:
+    colors: spheres_profile/state_colors/oregon_colors.tsv
+    description: spheres_profile/state_descriptions/oregon_description.md
+    region: North America
+    country: USA
+    division: Oregon
+    subsampling_scheme: state-territory
+  pennsylvania:
+    colors: spheres_profile/state_colors/pennsylvania_colors.tsv
+    description: spheres_profile/state_descriptions/pennsylvania_description.md
+    region: North America
+    country: USA
+    division: Pennsylvania
+    subsampling_scheme: state-territory
+  puerto-rico:
+    colors: spheres_profile/state_colors/puerto-rico_colors.tsv
+    description: spheres_profile/state_descriptions/puerto-rico_description.md
+    region: North America
+    country: USA
+    division: Puerto Rico
+    subsampling_scheme: state-territory
+  rhode-island:
+    colors: spheres_profile/state_colors/rhode-island_colors.tsv
+    description: spheres_profile/state_descriptions/rhode-island_description.md
+    region: North America
+    country: USA
+    division: Rhode Island
+    subsampling_scheme: state-territory
+  south-carolina:
+    colors: spheres_profile/state_colors/south-carolina_colors.tsv
+    description: spheres_profile/state_descriptions/south-carolina_description.md
+    region: North America
+    country: USA
+    division: South Carolina
+    subsampling_scheme: state-territory
+  south-dakota:
+    colors: spheres_profile/state_colors/south-dakota_colors.tsv
+    description: spheres_profile/state_descriptions/south-dakota_description.md
+    region: North America
+    country: USA
+    division: South Dakota
+    subsampling_scheme: state-territory
+  tennessee:
+    colors: spheres_profile/state_colors/tennessee_colors.tsv
+    description: spheres_profile/state_descriptions/tennessee_description.md
+    region: North America
+    country: USA
+    division: Tennessee
+    subsampling_scheme: state-territory
+  texas:
+    colors: spheres_profile/state_colors/texas_colors.tsv
+    description: spheres_profile/state_descriptions/texas_description.md
+    region: North America
+    country: USA
+    division: Texas
+    subsampling_scheme: state-territory
+  utah:
+    colors: spheres_profile/state_colors/utah_colors.tsv
+    description: spheres_profile/state_descriptions/utah_description.md
+    region: North America
+    country: USA
+    division: Utah
+    subsampling_scheme: state-territory
+  vermont:
+    colors: spheres_profile/state_colors/vermont_colors.tsv
+    description: spheres_profile/state_descriptions/vermont_description.md
+    region: North America
+    country: USA
+    division: Vermont
+    subsampling_scheme: state-territory
+  virginia:
+    colors: spheres_profile/state_colors/virginia_colors.tsv
+    description: spheres_profile/state_descriptions/virginia_description.md
+    region: North America
+    country: USA
+    division: Virginia
+    subsampling_scheme: state-territory
+  washington:
+    colors: spheres_profile/state_colors/washington_colors.tsv
+    description: spheres_profile/state_descriptions/washington_description.md
+    region: North America
+    country: USA
+    division: Washington
+    subsampling_scheme: state-territory
+  washington-dc:
+    colors: spheres_profile/state_colors/washington-dc_colors.tsv
+    description: spheres_profile/state_descriptions/washington-dc_description.md
+    region: North America
+    country: USA
+    division: Washington DC
+    subsampling_scheme: state-territory
+  west-virginia:
+    colors: spheres_profile/state_colors/west-virginia_colors.tsv
+    description: spheres_profile/state_descriptions/west-virginia_description.md
+    region: North America
+    country: USA
+    division: West Virginia
+    subsampling_scheme: state-territory
+  wisconsin:
+    colors: spheres_profile/state_colors/wisconsin_colors.tsv
+    description: spheres_profile/state_descriptions/wisconsin_description.md
+    region: North America
+    country: USA
+    division: Wisconsin
+    subsampling_scheme: state-territory
+  wyoming:
+    colors: spheres_profile/state_colors/wyoming_colors.tsv
+    description: spheres_profile/state_descriptions/wyoming_description.md
+    region: North America
+    country: USA
+    division: Wyoming
+    subsampling_scheme: state-territory
+
+# Define subsampling scheme for state- and territory-level (hereafter
+# "division") builds. This scheme should include as much local diversity for a
+# given division as possible and contextual samples from the rest of the USA and
+# the world.
+subsampling:
+  USA:
+    # Focal samples for country
+    country:
+      group_by: "division year month"
+      # seq_per_group: 30
+      max_sequences: 2500
+      query: --query "gisaid_local == 'yes'"
+      exclude: "--exclude-where 'country!={country}'"
+    global-context:
+      # Evenly sample across time from the rest of the world excluding the USA.
+      group_by: "region year month"
+      max_sequences: 100
+      query: --query "gisaid_local == 'yes'"
+      exclude: "--exclude-where 'country=={country}'"
+  NSSS:
+    # Focal samples for country
+    country:
+      group_by: "division year month"
+      # seq_per_group: 30
+      max_sequences: 2500
+      query: --query "gisaid_local == 'yes'"
+      exclude: "--exclude-where 'country!={country}' 'NS3_Set=False'"
+    global-context:
+      # Evenly sample across time from the rest of the world excluding the USA.
+      group_by: "region year month"
+      max_sequences: 100
+      query: --query "gisaid_local == 'yes'"
+      exclude: "--exclude-where 'country={country}' 'NS3_Set=True'"
+  state-territory:
+    local-focus:
+      # Evenly sample across time for the current division.
+      group_by: "year month"
+      max_sequences: 1500
+      query: --query "gisaid_local == 'yes'"
+      exclude: "--exclude-where 'country!={country}' 'division!={division}'"
+    usa-context:
+      # Evenly sample across time from other divisions prioritizing samples that
+      # are that are genetically similar to the current division's sequences.
+      group_by: "year month"
+      max_sequences: 200
+      query: --query "(gisaid_local == 'yes' & country == '{country}')"
+      exclude: "--exclude-where 'division={division}'"
+      ##  Note: Prorities not currently working as expected - disabled
+      # priorities:
+        # type: proximity
+        # focus: "local-focus"
+    global-context:
+      # Evenly sample across time from the rest of the world excluding the USA.
+      group_by: "region year month"
+      max_sequences: 200
+      query: --query "gisaid_local == 'yes'"
+      exclude: "--exclude-where 'country={country}'"
+      ##  Note: Prorities not currently working as expected - disabled
+      # priorities:
+        # type: proximity
+        # focus: usa-context

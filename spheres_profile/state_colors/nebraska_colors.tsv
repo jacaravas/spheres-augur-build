@@ -1,0 +1,71 @@
+division	Nebraska	#96BD60
+division	Alabama	#5E1D9D
+division	Alaska	#531EA6
+division	American Samoa	#4D23AE
+division	Arizona	#482AB6
+division	Arkansas	#4432BD
+division	California	#4039C4
+division	Canal Zone	#3F43C7
+division	Colorado	#3F4CCB
+division	Connecticut	#3F56CE
+division	Delaware	#3F5FD0
+division	Washington DC	#4067CF
+division	Florida	#4270CE
+division	Georgia	#4379CD
+division	Guam	#4680CA
+division	Hawaii	#4887C6
+division	Idaho	#4B8EC1
+division	Illinois	#4E95BD
+division	Indiana	#529AB7
+division	Iowa	#559FB0
+division	Kansas	#59A4AA
+division	Kentucky	#5DA8A3
+division	Louisiana	#62AB9C
+division	Maine	#67AE94
+division	Maryland	#6CB28D
+division	Massachusetts	#71B486
+division	Michigan	#77B67F
+division	Minnesota	#7CB878
+division	Mississippi	#82BA71
+division	Missouri	#89BB6B
+division	Montana	#8FBC66
+division	Nevada	#9CBE5B
+division	New Hampshire	#A3BE57
+division	New Jersey	#AABD52
+division	New Mexico	#B1BD4E
+division	New York	#B7BD4B
+division	North Carolina	#BDBB48
+division	North Dakota	#C3BA46
+division	Northern Mariana Islands	#CAB843
+division	Ohio	#CFB541
+division	Oklahoma	#D3B23F
+division	Oregon	#D8AE3E
+division	Pennsylvania	#DDAA3C
+division	Puerto Rico	#DFA43B
+division	Rhode Island	#E29E39
+division	South Carolina	#E49838
+division	South Dakota	#E69036
+division	Tennessee	#E68835
+division	Texas	#E67F33
+division	Utah	#E67631
+division	Vermont	#E56B2F
+division	Virgin Islands	#E3602D
+division	Virginia	#E1552B
+division	Washington	#E04A29
+division	West Virginia	#DE3E27
+division	Wisconsin	#DD3325
+division	Wyoming	#DB2823
+		
+recency	Older	#416DCE
+recency	One month ago	#59A3AA
+recency	One week ago	#84BA6F
+recency	3-7 days ago	#BBBC49
+recency	1-2 days ago	#E29D39
+recency	New	#E1502A
+		
+region	Oceania	#416DCE
+region	Asia	#59A3AA
+region	Africa	#84BA6F
+region	Europe	#BBBC49
+region	North America	#E29D39
+region	South America	#E1502A
