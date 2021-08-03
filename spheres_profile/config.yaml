@@ -66,7 +66,7 @@ local-cores: 1
 # Set the name for the job as display in the cluster queue.
 jobname: "{rulename}.{jobid}.sh"
 
-Set the number of threads (cores, actually) that the tree rule or other rules
-should use on the cluster. These settings override the hardcoded values in the
-Snakemake rules.
+# Set the number of threads (cores, actually) that the tree rule or other rules
+# should use on the cluster. These settings override the hardcoded values in the
+# Snakemake rules.
 set-threads: tree=8
