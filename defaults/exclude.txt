@@ -8808,6 +8808,7 @@ France/PAC-IHU-7668-Nova2E/2021
 France/PAC-IHU-7670-Nova2E/2021
 France/PAC-IHU-7671-Nova2E/2021
 France/PAC-IHU-7673-Nova2E/2021
+<<<<<<< HEAD
 France/PAC-IHU-10453-Nova2A/2021
 France/PAC-IHU-14243-Nova2A/2021
 France/PAC-IHU-15080-Nova1E/2021
@@ -10166,3 +10167,7 @@ Netherlands/Flevoland_1/2020
 
 # s1 mutations
 Slovenia/296829/2021
+
+#Exclude bad seq ahead of ncov main branch update
+Hangzhou/ZJU-12/2021
+
