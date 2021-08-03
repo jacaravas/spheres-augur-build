@@ -8771,3 +8771,6 @@ France/PAC-IHU-7668-Nova2E/2021
 France/PAC-IHU-7670-Nova2E/2021
 France/PAC-IHU-7671-Nova2E/2021
 France/PAC-IHU-7673-Nova2E/2021
+
+#Exclude bad seq ahead of ncov main branch update
+Hangzhou/ZJU-12/2021
