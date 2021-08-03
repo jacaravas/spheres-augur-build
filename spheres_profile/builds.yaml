@@ -1,5 +1,5 @@
 # # Define path to the conda environment file.
-# conda_environment: "spheres_profile/conda.yaml"
+conda_environment: "spheres_profile/conda.yaml"
 
 # Define custom auspice configuration to enable frequencies.
 files:
@@ -21,8 +21,8 @@ builds:
     country: USA
     colors: spheres_profile/state_colors/usa_colors.tsv
     description: spheres_profile/state_descriptions/usa_description.md    
-  NSSS:
-    subsampling_scheme: NSSS
+  NS3:
+    subsampling_scheme: NS3
     region: North America
     country: USA
     colors: spheres_profile/state_colors/usa_colors.tsv
@@ -411,7 +411,7 @@ subsampling:
       max_sequences: 100
       query: --query "gisaid_local == 'yes'"
       exclude: "--exclude-where 'country=={country}'"
-  NSSS:
+  NS3:
     # Focal samples for country
     country:
       group_by: "division year month"
