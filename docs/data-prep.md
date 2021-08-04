@@ -121,7 +121,6 @@ If you do not have an account yet, register for one (it's free) by selecting the
 
 Select "EpiCoV" from the top navigation bar.
 
-
 ![GISAID navigation bar with "EpiCoV" link](images/gisaid-navigation-bar.png)
 
 ### Search for region-specific data

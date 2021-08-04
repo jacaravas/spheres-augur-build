@@ -78,7 +78,6 @@ if "builds" not in config:
         }
     }
 
-
 # Check for old-style input file references and alert users to the new format.
 if "sequences" in config or "metadata" in config:
     logger.error("ERROR: Your configuration file includes references to an unsupported specification of input files (e.g., `config['sequences']` or `config['metadata']`).")
@@ -161,5 +160,3 @@ if "localrules" in config:
 if "custom_rules" in config:
     for rule_file in config["custom_rules"]:
         include: rule_file
-# Include custom SPHERES rules        
-include: "spheres_profile/spheres_custom_rules.smk"
