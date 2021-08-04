@@ -7,8 +7,8 @@ files:
 
 inputs:
   - name: "gisaid_local"
-    metadata: "data/gisaid_metadata.tsv"
-    sequences: "data/gisaid_sequences.fasta"
+    metadata: "data/metadata.tsv"
+    sequences: "data/sequences.fasta"
   - name: "references"
     metadata: "data/references_metadata.tsv"
     filtered: "data/references_sequences.fasta"
