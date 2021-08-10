@@ -5,6 +5,10 @@ conda_environment: "spheres_profile/conda.yaml"
 files:
   auspice_config: "spheres_profile/auspice_config.json"
 
+# Use Nextalign
+use_nextalign: true
+genes: ["ORF1a", "ORF1b", "S", "ORF3a", "M", "N"]
+
 inputs:
   - name: "gisaid_local"
     metadata: "data/metadata.tsv"
