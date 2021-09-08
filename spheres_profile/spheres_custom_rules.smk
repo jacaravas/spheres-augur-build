@@ -1,12 +1,22 @@
 # Rules for SPHERES Augur
-# Currently included directly into Snakefile as loading from config is not working correctly
+
+# Link this file in builds.yaml file using:
+# custom_rules:
+#   - spheres_profile/spheres_custom_rules.smk
+#
+# And add the output to your Snakefile rule all/input using 
+# rule all: 
+#    input:
+#       distance = expand("microbetrace/distance-{build_name}.csv", build_name=BUILD_NAMES, ext=config["auspice_json_prefix"])
+
+
 
 rule mask_ambiguous:
    message: "Masking ambiguous sites and gaps with N for augur distance calculation"
    input:
-      subsampled_sequences = "results/{build_name}/subsampled_sequences.fasta"
+      subsampled_sequences = "results/{build_name}/aligned.fasta"
    output:
-      masked_alignment = "results/{build_name}/masked_subsampled_sequences.fasta"
+      masked_alignment = "results/{build_name}/{build_name}_masked_subsampled_sequences.fasta"
    log:
       "logs/mask_ambiguous_sites_{build_name}.txt"
    conda: config["conda_environment"]
@@ -22,7 +32,7 @@ rule calculate_distance:
    message: "Calculating distance using augur distance, not counting mismatches at ambiguous and gap sites"
    input:
       tree = "results/{build_name}/tree.nwk",
-      masked_alignment = "results/{build_name}/masked_subsampled_sequences.fasta",
+      masked_alignment = "results/{build_name}/{build_name}_masked_subsampled_sequences.fasta",
       date_annotations= "results/{build_name}/branch_lengths.json"
    output:
       distance = "results/{build_name}/distance-{build_name}.json"

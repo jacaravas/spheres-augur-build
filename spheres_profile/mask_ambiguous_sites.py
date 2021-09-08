@@ -4,6 +4,7 @@ from Bio.Seq import Seq
 import os, sys
 import argparse
 import re
+#import lzma
 
 parser = argparse.ArgumentParser(description='Mask degenerate sites in alignment.')
 parser.add_argument("--alignment", type = str, help="sequence(s) to be used, supplied as FASTA files", required=True)
@@ -19,7 +20,7 @@ args = parser.parse_args()
 masked_seqs = []
 
 ##  Mask sequences
-with open (args.alignment, "rU") as aln_handle:
+with open (args.alignment, "rt") as aln_handle:
     for record in SeqIO.parse (aln_handle, "fasta"):
         new_seq = str(record.seq.upper())
         new_seq = new_seq.replace("U", "T")

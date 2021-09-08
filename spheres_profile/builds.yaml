@@ -1,4 +1,4 @@
-# # Define path to the conda environment file.
+# # # Define path to the conda environment file.
 conda_environment: "spheres_profile/conda.yaml"
 
 # Define custom auspice configuration to enable frequencies.
@@ -8,6 +8,10 @@ files:
 # Use Nextalign
 use_nextalign: true
 genes: ["ORF1a", "ORF1b", "S", "ORF3a", "M", "N"]
+
+# Include custom rules
+custom_rules:
+  - spheres_profile/spheres_custom_rules.smk
 
 inputs:
   - name: "gisaid_local"
