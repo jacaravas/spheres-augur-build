@@ -125,7 +125,7 @@ rule dated_json:
     message: "Copying dated Auspice JSON"
     input:
         auspice_json = rules.finalize.output.auspice_json,
-        tip_frequencies_json = rules.tip_frequencies.output.tip_frequencies_json
+        tip_frequencies_json = rules.include_hcov19_prefix.output.tip_frequencies
     output:
         dated_auspice_json = "auspice/{prefix}_{build_name}_{date}.json",
         dated_tip_frequencies_json = "auspice/{prefix}_{build_name}_{date}_tip-frequencies.json"
@@ -146,6 +146,7 @@ from os import environ
 
 SLACK_TOKEN   = environ["SLACK_TOKEN"]   = config["slack_token"]   or ""
 SLACK_CHANNEL = environ["SLACK_CHANNEL"] = config["slack_channel"] or ""
+BUILD_DESCRIPTION = f"Build to upload {' & '.join(config.get('upload', ['nothing']))}"
 
 try:
     deploy_origin = (
@@ -186,6 +187,8 @@ rule upload:
     message: "Uploading intermediate files for specified origins to {params.s3_bucket}"
     input:
         unpack(_get_upload_inputs)
+    output:
+        touch("results/upload.done")
     params:
         s3_bucket = config["S3_DST_BUCKET"],
     log:
@@ -196,8 +199,40 @@ rule upload:
         for remote, local in input.items():
             shell("./scripts/upload-to-s3 {local:q} s3://{params.s3_bucket:q}/{remote:q} | tee -a {log:q}")
 
+rule trigger_phylogenetic_rebuild:
+    message: "Triggering nextstrain/ncov rebuild action (via repository dispatch)"
+    input:
+        "results/upload.done"
+    log:
+        "logs/trigger_phylogenetic_rebuild.txt"
+    run:
+        # some basic checks here before we proceed
+        if "preprocessing-files" not in config.get("upload", []) or len(config.get("upload", []))!=1:
+            raise Exception("Rule trigger_phylogenetic_rebuild should only be called when you are only uploading preprocessing-files")
+        if "github_token" not in config:
+            raise Exception("Rule trigger_phylogenetic_rebuild requires a config-provided 'github_token'")
+        if config["S3_DST_BUCKET"] == "nextstrain-data/files/ncov/open":
+            dispatch_type = "open/rebuild"
+        elif config["S3_DST_BUCKET"] == "nextstrain-ncov-private":
+            dispatch_type = "gisaid/rebuild"
+        else:
+            raise Exception("Rule trigger_phylogenetic_rebuild cannot be run with a non-default S3_DST_BUCKET")
+        import requests
+        import json
+        headers = {
+            'Content-type': 'application/json',
+            'authorization': f"Bearer {config['github_token']}",
+            'Accept': 'application/vnd.github.v3+json'
+        }
+        data = json.dumps(
+            {"event_type": dispatch_type}
+        )
+        print(f"Triggering ncov rebuild GitHub action via repository dispatch type: {dispatch_type}")
+        response = requests.post("https://api.github.com/repos/nextstrain/ncov/dispatches", headers=headers, data=data)
+        response.raise_for_status()
+
 onstart:
-    slack_message = f"Build {deploy_origin} started."
+    slack_message = f"{BUILD_DESCRIPTION} {deploy_origin} started."
 
     if SLACK_TOKEN and SLACK_CHANNEL:
         shell(f"""
@@ -210,7 +245,7 @@ onstart:
         """)
 
 onerror:
-    slack_message = f"Build {deploy_origin} failed."
+    slack_message = f"{BUILD_DESCRIPTION} {deploy_origin} failed."
 
     if SLACK_TOKEN and SLACK_CHANNEL:
         shell(f"""

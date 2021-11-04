@@ -40,53 +40,26 @@ def _get_path_for_input(stage, origin_wildcard):
     This function always returns a local filepath, the format of which lets snakemake decide
     whether to create it (via another rule) or use is as-is.
     """
-    path_or_url = config.get("inputs", {}).get(origin_wildcard, {}).get(stage, "")
-    scheme = urlsplit(path_or_url).scheme
-    remote = bool(scheme)
+    input_file = config.get("inputs", {}).get(origin_wildcard, {}).get(stage, "")
 
-    # Following checking should be the remit of the rule which downloads the remote resource
-    if scheme and scheme!="s3":
-        raise Exception(f"Input defined scheme {scheme} which is not yet supported.")
+    if input_file:
+        return path_or_url(input_file, keep_local=True)
 
-    if stage=="metadata":
-        if not path_or_url:
-            raise Exception(f"ERROR: config->input->{origin_wildcard}->metadata is not defined.")
-        return f"data/downloaded_{origin_wildcard}.tsv" if remote else path_or_url
-    if stage=="sequences":
-        if not path_or_url:
-            raise Exception(f"ERROR: config->input->{origin_wildcard}->sequences is not defined.")
-        return f"data/downloaded_{origin_wildcard}.fasta.xz" if remote else path_or_url
-    if stage=="aligned":
-        if remote:
-            return f"results/precomputed-aligned_{origin_wildcard}.fasta"
-        elif path_or_url:
-            return path_or_url
-        else:
-            return f"results/aligned_{origin_wildcard}.fasta.xz"
-    if stage=="masked":
-        if remote:
-            return f"results/precomputed-masked_{origin_wildcard}.fasta"
-        elif path_or_url:
-            return path_or_url
-        else:
-            return f"results/masked_{origin_wildcard}.fasta.xz"
-    if stage=="filtered":
-        if remote:
-            return f"results/precomputed-filtered_{origin_wildcard}.fasta"
-        elif path_or_url:
-            return path_or_url
-        else:
-            return f"results/filtered_{origin_wildcard}.fasta.xz"
-
-    raise Exception(f"_get_path_for_input with unknown stage \"{stage}\"")
+    if stage in {"metadata", "sequences"}:
+        raise Exception(f"ERROR: config->input->{origin_wildcard}->{stage} is not defined.")
+    elif stage in {"aligned", "masked", "filtered"}:
+        return f"results/{stage}_{origin_wildcard}.fasta.xz"
+    else:
+        raise Exception(f"_get_path_for_input with unknown stage \"{stage}\"")
 
 
 def _get_unified_metadata(wildcards):
     """
     Returns a single metadata file representing the input metadata file(s).
     If there was only one supplied metadata file in the `config["inputs"] dict`,
-    then that file is returned. Else "results/combined_metadata.tsv" is returned
-    which will run the `combine_input_metadata` rule to make it.
+    then that file is run through `sanitize_metadata` and the new file name returned. 
+    Else "results/combined_metadata.tsv.xz" is returned which will run the 
+    `combine_input_metadata` rule (and `sanitize_metadata` rule) to make it.
     """
     if len(list(config["inputs"].keys()))==1:
         return "results/sanitized_metadata_{origin}.tsv.xz".format(origin=list(config["inputs"].keys())[0])
@@ -114,18 +87,6 @@ def _get_metadata_by_wildcards(wildcards):
     This function is designed to be used as an input function.
     """
     return _get_metadata_by_build_name(wildcards.build_name)
-
-def _get_sampling_trait_for_wildcards(wildcards):
-    if wildcards.build_name in config["exposure"]:
-        return config["exposure"][wildcards.build_name]["trait"]
-    else:
-        return config["exposure"]["default"]["trait"]
-
-def _get_exposure_trait_for_wildcards(wildcards):
-    if wildcards.build_name in config["exposure"]:
-        return config["exposure"][wildcards.build_name]["exposure"]
-    else:
-        return config["exposure"]["default"]["exposure"]
 
 def _get_trait_columns_by_wildcards(wildcards):
     if wildcards.build_name in config["traits"]:
@@ -179,15 +140,16 @@ def _get_upload_inputs(wildcards):
     origin = config["S3_DST_ORIGINS"][0]
 
     # mapping of remote → local filenames
-    uploads = {
+    preprocessing_files = {
         f"aligned.fasta.xz":              f"results/aligned_{origin}.fasta.xz",              # from `rule align`
         f"masked.fasta.xz":               f"results/masked_{origin}.fasta.xz",               # from `rule mask`
         f"filtered.fasta.xz":             f"results/filtered_{origin}.fasta.xz",             # from `rule filter`
         f"mutation-summary.tsv.xz":       f"results/mutation_summary_{origin}.tsv.xz",       # from `rule mutation_summary`
     }
 
+    build_files = {}
     for build_name in config["builds"]:
-        uploads.update({
+        build_files.update({
             f"{build_name}/sequences.fasta.xz": f"results/{build_name}/{build_name}_subsampled_sequences.fasta.xz",   # from `rule combine_samples`
             f"{build_name}/metadata.tsv.xz":    f"results/{build_name}/{build_name}_subsampled_metadata.tsv.xz",      # from `rule combine_samples`
             f"{build_name}/aligned.fasta.xz":   f"results/{build_name}/aligned.fasta.xz",                             # from `rule build_align`
@@ -197,4 +159,13 @@ def _get_upload_inputs(wildcards):
             f"{build_name}/{build_name}_root-sequence.json":    f"auspice/{config['auspice_json_prefix']}_{build_name}_root-sequence.json"
         })
 
-    return uploads
+    req_upload = config.get("upload", [])
+    if "preprocessing-files" in req_upload and "build-files" in req_upload:
+        return {**preprocessing_files, **build_files}
+    elif "preprocessing-files" in req_upload:
+        return preprocessing_files
+    elif "build-files" in req_upload:
+        return build_files
+    else:
+        raise Exception("The upload rule requires an 'upload' parameter in the config.")
+

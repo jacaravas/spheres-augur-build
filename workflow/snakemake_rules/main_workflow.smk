@@ -10,16 +10,24 @@ rule sanitize_metadata:
     log:
         "logs/sanitize_metadata_{origin}.txt"
     params:
+        metadata_id_columns=config["sanitize_metadata"]["metadata_id_columns"],
+        database_id_columns=config["sanitize_metadata"]["database_id_columns"],
         parse_location_field=f"--parse-location-field {config['sanitize_metadata']['parse_location_field']}" if config["sanitize_metadata"].get("parse_location_field") else "",
         rename_fields=config["sanitize_metadata"]["rename_fields"],
         strain_prefixes=config["strip_strain_prefixes"],
+        error_on_duplicate_strains="--error-on-duplicate-strains" if config["sanitize_metadata"].get("error_on_duplicate_strains") else "",
+    resources:
+        mem_mb=2000
     shell:
         """
         python3 scripts/sanitize_metadata.py \
             --metadata {input.metadata} \
+            --metadata-id-columns {params.metadata_id_columns:q} \
+            --database-id-columns {params.database_id_columns:q} \
             {params.parse_location_field} \
             --rename-fields {params.rename_fields:q} \
             --strip-prefixes {params.strain_prefixes:q} \
+            {params.error_on_duplicate_strains} \
             --output {output.metadata} 2>&1 | tee {log}
         """
 
@@ -104,7 +112,9 @@ rule diagnostic:
         to_exclude = "results/to-exclude_{origin}.txt"
     params:
         clock_filter = 20,
-        snp_clusters = 1
+        snp_clusters = 1,
+        rare_mutations = 100,
+        clock_plus_rare = 100,
     log:
         "logs/diagnostics_{origin}.txt"
     benchmark:
@@ -118,6 +128,8 @@ rule diagnostic:
         python3 scripts/diagnostic.py \
             --metadata {input.metadata} \
             --clock-filter {params.clock_filter} \
+            --rare-mutations {params.rare_mutations} \
+            --clock-plus-rare {params.clock_plus_rare} \
             --snp-clusters {params.snp_clusters} \
             --output-exclusion-list {output.to_exclude} 2>&1 | tee {log}
         """
@@ -1124,6 +1136,57 @@ rule logistic_growth:
             --output {output.node_data} 2>&1 | tee {log}
         """
 
+rule mutational_fitness:
+    input:
+        tree = "results/{build_name}/tree.nwk",
+        alignments = lambda w: rules.aa_muts_explicit.output.translations,
+        distance_map = config["files"]["mutational_fitness_distance_map"]
+    output:
+        node_data = "results/{build_name}/mutational_fitness.json"
+    benchmark:
+        "benchmarks/mutational_fitness_{build_name}.txt"
+    conda:
+        config["conda_environment"]
+    log:
+        "logs/mutational_fitness_{build_name}.txt"
+    params:
+        genes = ' '.join(config.get('genes', ['S'])),
+        compare_to = "root",
+        attribute_name = "mutational_fitness"
+    conda:
+        config["conda_environment"],
+    resources:
+        mem_mb=2000
+    shell:
+        """
+        augur distance \
+            --tree {input.tree} \
+            --alignment {input.alignments} \
+            --gene-names {params.genes} \
+            --compare-to {params.compare_to} \
+            --attribute-name {params.attribute_name} \
+            --map {input.distance_map} \
+            --output {output} 2>&1 | tee {log}
+        """
+
+rule calculate_epiweeks:
+    input:
+        metadata="results/{build_name}/metadata_adjusted.tsv.xz",
+    output:
+        node_data="results/{build_name}/epiweeks.json",
+    benchmark:
+        "benchmarks/calculate_epiweeks_{build_name}.txt",
+    conda:
+        config["conda_environment"],
+    log:
+        "logs/calculate_epiweeks_{build_name}.txt",
+    shell:
+        """
+        python3 scripts/calculate_epiweek.py \
+            --metadata {input.metadata} \
+            --output-node-data {output.node_data} 2>&1 | tee {log}
+        """
+
 def export_title(wildcards):
     # TODO: maybe we could replace this with a config entry for full/human-readable build name?
     location_name = wildcards.build_name
@@ -1157,8 +1220,10 @@ def _get_node_data_by_wildcards(wildcards):
         rules.recency.output.node_data,
         rules.traits.output.node_data,
         rules.logistic_growth.output.node_data,
+        rules.mutational_fitness.output.node_data,
         rules.aa_muts_explicit.output.node_data,
-        rules.distances.output.node_data
+        rules.distances.output.node_data,
+        rules.calculate_epiweeks.output.node_data
     ]
 
     if "run_pangolin" in config and config["run_pangolin"]:
@@ -1248,37 +1313,10 @@ rule include_hcov19_prefix:
             --output-tip-frequencies {output.tip_frequencies}
         """
 
-rule incorporate_travel_history:
-    message: "Adjusting main auspice JSON to take into account travel history"
-    input:
-        auspice_json = rules.include_hcov19_prefix.output.auspice_json,
-        colors = lambda w: config["builds"][w.build_name]["colors"] if "colors" in config["builds"][w.build_name] else ( config["files"]["colors"] if "colors" in config["files"] else rules.colors.output.colors.format(**w) ),
-        lat_longs = config["files"]["lat_longs"]
-    params:
-        sampling = _get_sampling_trait_for_wildcards,
-        exposure = _get_exposure_trait_for_wildcards
-    output:
-        auspice_json = "results/{build_name}/ncov_with_accessions_and_travel_branches.json"
-    log:
-        "logs/incorporate_travel_history_{build_name}.txt"
-    benchmark:
-        "benchmarks/incorporate_travel_history_{build_name}.txt"
-    conda: config["conda_environment"]
-    shell:
-        """
-        python3 ./scripts/modify-tree-according-to-exposure.py \
-            --input {input.auspice_json} \
-            --colors {input.colors} \
-            --lat-longs {input.lat_longs} \
-            --sampling {params.sampling} \
-            --exposure {params.exposure} \
-            --output {output.auspice_json} 2>&1 | tee {log}
-        """
-
 rule finalize:
     message: "Remove extraneous colorings for main build and move frequencies"
     input:
-        auspice_json = lambda w: rules.include_hcov19_prefix.output.auspice_json if config.get("skip_travel_history_adjustment", False) else rules.incorporate_travel_history.output.auspice_json,
+        auspice_json = lambda w: rules.include_hcov19_prefix.output.auspice_json,
         frequencies = rules.include_hcov19_prefix.output.tip_frequencies,
         root_sequence_json = rules.export.output.root_sequence_json
     output:

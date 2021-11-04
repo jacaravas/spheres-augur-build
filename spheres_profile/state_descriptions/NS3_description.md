@@ -5,6 +5,11 @@ This analysis focuses on SARS-CoV-2 sequences produced by the NS3 program. Addit
 
 [Module 3.4 – Walking through Nextstrain trees](https://youtu.be/lFmtfnDGbo4)
 
+[MicrobeTrace](https://microbetrace.cdc.gov/MicrobeTrace/) edge lists for this tree can be downloaded from [https://github.com/CDCgov/spheres-auspice-data/tree/master/microbetrace](https://raw.githubusercontent.com/CDCgov/spheres-auspice-data/master/microbetrace/distance-NS3.csv.xz).
+
+[Auspice](https://auspice.us/) json files for this tree can be downloaded from [https://github.com/CDCgov/spheres-auspice-data/tree/master/auspice](https://raw.githubusercontent.com/CDCgov/spheres-auspice-data/master/auspice/ncov_NS3.tar.xz).
+
+
 The National SARS-CoV-2 Strain Surveillance program is made possible by the efforts of our partners:
 
 <sub>Alaska State Public Health Lab, State Health Department, Alaska; Alabama Department of Public Health Bureau of Clinical Laboratories, Alabama; Arkansas Department of Health, Public Health Laboratory, Arkansas; Arizona State Public Health Laboratory, Arizona Department of Health Services, Arizona; Los Angeles County Public Health Laboratory, California; California Department of Public Health, Viral and Rickettsial Disease Laboratory, California; Colorado Department of Public Health and Environment, Lab Services Division, Colorado ; Dr. Katherine A. Kelley, State Public Health Lab, Connecticut; District of Columbia Public Health Lab / Department of Forensic Sciences, District of Columbia; Delaware Public Health Laboratory, Delaware; Florida Bureau of Public Health Laboratories-Jacksonville, Florida; Georgia Department of Public Health Laboratory, Georgia; Hawaii Deptartment of Health, State Laboratories Division, Hawaii; Iowa State Hygienic Laboratory, Iowa; Idaho Bureau of Laboratories, Idaho; Illinois Department of Public Health, Chicago Laboratory, Illinois; Illinois Deptartment of Public Health, Springfield Laboratory, Illinois; Indiana State Department of Health Laboratory Services, Indiana; Kansas Health and Environmental Laboratories, Kansas; Kentucky State Public Health Lab, Kentucky; Lousiana Office of Public Health Laboratories, Louisiana; Massachusetts State Public Health Laboratory, Massachusetts; Maryland Department of Health Laboratories Administration, Maryland; Maine Health and Environmental Testing Laboratory, Maine
