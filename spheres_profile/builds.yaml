@@ -1,10 +1,11 @@
 # # # Define path to the conda environment file.
-conda_environment: "spheres_profile/conda.yaml"
+# conda_environment: "spheres_profile/conda.yaml"
+conda_environment: "ncov/workflow/envs/nextstrain.yaml"
 
 # Define custom auspice configuration to enable frequencies.
 files:
   auspice_config: "spheres_profile/auspice_config.json"
-
+  
 # Use Nextalign
 use_nextalign: true
 genes: ["ORF1a", "ORF1b", "S", "ORF3a", "M", "N"]

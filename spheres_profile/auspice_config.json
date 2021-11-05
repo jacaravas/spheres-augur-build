@@ -114,7 +114,10 @@
     "country",
     "region",
     "host",
-    "author"
+    "author",
+    "epiweek",
+    "clade_membership",
+    "emerging_lineage"
   ],
   "panels": [
     "tree",
