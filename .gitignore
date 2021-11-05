@@ -5,7 +5,6 @@ logs/
 results/
 build/
 auspice/
-data/*
 defaults/colors.tsv
 defaults/colors_*.tsv
 stats.json
