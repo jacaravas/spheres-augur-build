@@ -1,6 +1,6 @@
 # # # Define path to the conda environment file.
 # conda_environment: "spheres_profile/conda.yaml"
-conda_environment: "ncov/workflow/envs/nextstrain.yaml"
+conda_environment: "workflow/envs/nextstrain.yaml"
 
 # Define custom auspice configuration to enable frequencies.
 files:
