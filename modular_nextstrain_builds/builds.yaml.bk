@@ -1,0 +1,50 @@
+# Define custom auspice configuration to enable frequencies.
+# files:
+  # auspice_config: "spheres_profile/auspice_config.json"
+
+# Use Nextalign
+use_nextalign: true
+genes: ["ORF1a", "ORF1b", "S", "ORF3a", "M", "N"]
+
+inputs:
+  - name: "data"
+  #  https://s3.us-east-1.amazonaws.com/io-pe1-prod-ncezid-oamd-nextstrain/Alabama/Alabama-1000_isolates-unweighted_random-sequences.fasta.xz
+    # aligned: "data/WestVirginia-2000-unweighted-aligned.fasta"
+    # metadata: "data/WestVirginia-2000-unweighted-metadata.tsv"
+    # https://io-pe1-prod-ncezid-oamd-nextstrain.s3.amazonaws.com/WestVirginia/WestVirginia-2000-weighted-aligned.fasta.xz
+
+    # This just worked by changing s3://nextstrain-data/files/ncov/open/metadata.tsv.gz to https://nextstrain-data.s3.amazonaws.com/files/ncov/open/metadata.tsv.gz
+# https://io-pe1-prod-ncezid-oamd-nextstrain.s3.amazonaws.com/
+# https://io-pe1-prod-ncezid-oamd-nextstrain.s3.amazonaws.com/WestVirginia/WestVirginia-2000-weighted-aligned.fasta.xz
+
+    
+    aligned: "https://s3.us-east-1.amazonaws.com/io-pe1-prod-ncezid-oamd-nextstrain/WestVirginia/WestVirginia-2000-weighted-aligned.fasta.xz"
+    metadata: "https://s3.us-east-1.amazonaws.com/io-pe1-prod-ncezid-oamd-nextstrain/WestVirginia/WestVirginia-2000-weighted-metadata.tsv.xz"
+    # aligned: "s3://io-pe1-prod-ncezid-oamd-nextstrain/WestVirginia/WestVirginia-2000-weighted-aligned.fasta.xz"
+    # metadata: "s3://io-pe1-prod-ncezid-oamd-nextstrain/WestVirginia/WestVirginia-2000-weighted-metadata.tsv.xz"
+    # aligned: "s3://io-xe1-nonprod-ncezid-oamd-nextstrain/WestVirginia/WestVirginia-2000-unweighted-aligned.fasta.xz"
+    # metadata: "s3://io-xe1-nonprod-ncezid-oamd-nextstrain/WestVirginia/WestVirginia-2000-unweighted-metadata.tsv.xz"    
+  - name: "references"
+    metadata: "data/references_metadata.tsv"
+    filtered: "data/references_sequences.fasta"
+  
+# Define builds for each state and territory.
+builds:
+  west-virginia:
+    # colors: spheres_profile/state_colors/west-virginia_colors.tsv
+    # description: spheres_profile/state_descriptions/west-virginia_description.md
+    region: North America
+    country: USA
+    division: West Virginia
+    subsampling_scheme: state-territory
+
+# Define subsampling scheme for state- and territory-level (hereafter
+# "division") builds. This scheme should include as much local diversity for a
+# given division as possible and contextual samples from the rest of the USA and
+# the world.
+subsampling:
+  state-territory:
+    local-focus:
+      max_sequences: 1500
+      # query: --query "data == 'yes'"
+      # exclude: "--exclude-where 'country!={country}' 'division!={division}'"
