@@ -37,7 +37,7 @@ if __name__ == "__main__":
         with open(build_descriptions_path, "w") as oh:
             oh.write(f"## SARS-CoV-2 analysis with {state}-focused subsampling\n")
             oh.write(f"This analysis focuses on SARS-CoV-2 sequences available from {state} with additional sequences from the rest of the USA selected by genetic similarity to the state-level sequences. Additional global context is provided by evenly sampling sequences from major global regions across time.\n\n")
-            oh.write(f"[MicrobeTrace](https://microbetrace.cdc.gov/MicrobeTrace/) edge lists for this tree can be downloaded from [https://github.com/CDCgov/spheres-auspice-data/tree/master/microbetrace](https://raw.githubusercontent.com/CDCgov/spheres-auspice-data/master/microbetrace/distance-{build}.csv.xz).\n\n")
+            oh.write(f"[MicrobeTrace](https://microbetrace.cdc.gov/MicrobeTrace/) edge lists for this tree can be downloaded from [https://github.com/CDCgov/spheres-auspice-data/tree/master/microbetrace](https://raw.githubusercontent.com/CDCgov/spheres-auspice-data/master/microbetrace/distance-{build}.csv.xz)for input into MicrobeTrace with your metadata for network visualization and exploration.\n\n")
             oh.write(f"[Auspice](https://auspice.us/) json files for this tree can be downloaded from [https://github.com/CDCgov/spheres-auspice-data/tree/master/auspice](https://raw.githubusercontent.com/CDCgov/spheres-auspice-data/master/auspice/ncov_{build}.tar.xz).\n\n")
             
         # # Update the YAML to include the custom build descriptions.
