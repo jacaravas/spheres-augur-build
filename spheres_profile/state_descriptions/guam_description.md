@@ -1,5 +1,5 @@
 ## SARS-CoV-2 analysis with Puerto Rico-focused subsampling
-This analysis focuses on SARS-CoV-2 sequences available from Puerto Rico with additional sequences from the rest of the USA selected by genetic similarity to the sequences. Additional global context is provided by evenly sampling sequences from major global regions across time.
+This analysis focuses on SARS-CoV-2 sequences available from Guam with additional sequences from the rest of the USA selected by genetic similarity to the sequences. Additional global context is provided by evenly sampling sequences from major global regions across time.
 
 [MicrobeTrace](https://microbetrace.cdc.gov/MicrobeTrace/) edge lists for this tree can be downloaded from [https://github.com/CDCgov/spheres-auspice-data/tree/master/microbetrace](https://raw.githubusercontent.com/CDCgov/spheres-auspice-data/master/microbetrace/distance-puerto-rico.csv.xz)for input into MicrobeTrace with your metadata for network visualization and exploration.
 
