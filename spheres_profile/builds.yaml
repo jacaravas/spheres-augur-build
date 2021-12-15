@@ -401,8 +401,8 @@ builds:
     division: Puerto Rico
     subsampling_scheme: state-territory
   guam:
-    colors: spheres_profile/state_colors/puerto-rico_colors.tsv
-    description: spheres_profile/state_descriptions/puerto-rico_description.md
+    colors: spheres_profile/state_colors/guam_colors.tsv
+    description: spheres_profile/state_descriptions/guam_description.md
     region: North America
     country: Guam
     division: Guam
