@@ -453,7 +453,7 @@ subsampling:
       # are that are genetically similar to the current division's sequences.
       group_by: "year month"
       max_sequences: 200
-      query: --query "(gisaid_local == 'yes' & country == 'USA')"
+      query: --query "(gisaid_local == 'yes' & (country == 'USA' | country == 'Puerto Rico' | country == 'Guam'))"
       exclude: "--exclude-where 'division={division}'"
       ##  Note: Prorities not currently working as expected - disabled
       # priorities:
