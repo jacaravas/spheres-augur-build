@@ -23,12 +23,12 @@ inputs:
   
 # Define builds for each state and territory.
 builds:
-  # USA:
-    # subsampling_scheme: USA
-    # region: North America
-    # country: USA
-    # colors: spheres_profile/state_colors/usa_colors.tsv
-    # description: spheres_profile/state_descriptions/usa_description.md    
+  USA:
+    subsampling_scheme: USA
+    region: North America
+    country: USA
+    colors: spheres_profile/state_colors/usa_colors.tsv
+    description: spheres_profile/state_descriptions/usa_description.md    
   # NS3:
     # subsampling_scheme: NS3
     # region: North America
@@ -419,42 +419,36 @@ subsampling:
       group_by: "division year month"
       # seq_per_group: 30
       max_sequences: 2500
-      query: --query "gisaid_local == 'yes'"
-      exclude: "--exclude-where 'country!={country}'"
+      query: --query "gisaid_local == 'yes' & --query "(gisaid_local == 'yes' & (country == 'USA' | country == 'Puerto Rico' | country == 'Guam')"
     global-context:
       # Evenly sample across time from the rest of the world excluding the USA.
       group_by: "region year month"
       max_sequences: 100
-      query: --query "gisaid_local == 'yes'"
-      exclude: "--exclude-where 'country=={country}'"
+      query: --query "gisaid_local = 'yes' & country != 'USA' & country != 'Puerto Rico' & country != 'Guam'"
   NS3:
     # Focal samples for country
     country:
       group_by: "division year month"
       # seq_per_group: 30
       max_sequences: 2500
-      query: --query "gisaid_local == 'yes'"
-      exclude: "--exclude-where 'country!={country}' 'NS3_Set=False'"
+      query: --query "gisaid_local == 'yes' & NS3_Set = True & (country == 'USA' | country == 'Puerto Rico' | country == 'Guam')"
     global-context:
       # Evenly sample across time from the rest of the world excluding the USA.
       group_by: "region year month"
       max_sequences: 100
-      query: --query "gisaid_local == 'yes'"
-      exclude: "--exclude-where 'country={country}' 'NS3_Set=True'"
+      query: --query "gisaid_local = 'yes' & NS3_Set = False & country != 'USA' & country != 'Puerto Rico' & country != 'Guam'"
   state-territory:
     local-focus:
       # Evenly sample across time for the current division.
       group_by: "year month"
       max_sequences: 1500
-      query: --query "gisaid_local == 'yes'"
-      exclude: "--exclude-where 'country!={country}' 'division!={division}'"
+     query: --query "gisaid_local = 'yes' & division = {division}"
     usa-context:
       # Evenly sample across time from other divisions prioritizing samples that
       # are that are genetically similar to the current division's sequences.
       group_by: "year month"
       max_sequences: 200
-      query: --query "(gisaid_local == 'yes' & (country == 'USA' | country == 'Puerto Rico' | country == 'Guam'))"
-      exclude: "--exclude-where 'division={division}'"
+      query: --query "gisaid_local == 'yes' & division != {division} (country == 'USA' | country == 'Puerto Rico' | country == 'Guam')"
       ##  Note: Prorities not currently working as expected - disabled
       # priorities:
         # type: proximity
@@ -463,8 +457,7 @@ subsampling:
       # Evenly sample across time from the rest of the world excluding the USA.
       group_by: "region year month"
       max_sequences: 200
-      query: --query "gisaid_local == 'yes'"
-      exclude: "--exclude-where 'country={country}'"
+      query: --query "gisaid_local == 'yes' & country != 'USA' & country != 'Puerto Rico' & country != 'Guam'"
       ##  Note: Prorities not currently working as expected - disabled
       # priorities:
         # type: proximity
