@@ -23,18 +23,18 @@ inputs:
   
 # Define builds for each state and territory.
 builds:
-  USA:
-    subsampling_scheme: USA
-    region: North America
-    country: USA
-    colors: spheres_profile/state_colors/usa_colors.tsv
-    description: spheres_profile/state_descriptions/usa_description.md
-  NS3:
-    subsampling_scheme: NS3
-    region: North America
-    country: USA
-    colors: spheres_profile/state_colors/usa_colors.tsv
-    description: spheres_profile/state_descriptions/NS3_description.md
+ # USA:
+   # subsampling_scheme: USA
+   # region: North America
+   # country: USA
+   # colors: spheres_profile/state_colors/usa_colors.tsv
+   # description: spheres_profile/state_descriptions/usa_description.md
+ # NS3:
+   # subsampling_scheme: NS3
+   # region: North America
+   # country: USA
+   # colors: spheres_profile/state_colors/usa_colors.tsv
+   # description: spheres_profile/state_descriptions/NS3_description.md
   alabama:
     colors: spheres_profile/state_colors/alabama_colors.tsv
     description: spheres_profile/state_descriptions/alabama_description.md
