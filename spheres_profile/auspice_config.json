@@ -4,6 +4,11 @@
     {"name": "CDC/AMD", "url": "https://www.cdc.gov/amd/"}
   ],
   "colorings": [
+     {
+      "key": "Nextstrain_clade",
+      "title": "Nextclade Clade",
+      "type": "categorical"
+    }
     {
       "key": "location",
       "title": "Location",
