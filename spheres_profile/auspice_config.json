@@ -5,6 +5,11 @@
   ],
   "colorings": [
     {
+      "key": "Nextstrain_clade",
+      "title": "Updated Nextclade",
+      "type": "categorical"
+    },
+    {
       "key": "location",
       "title": "Location",
       "type": "categorical"
